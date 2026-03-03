@@ -1,11 +1,11 @@
 
 # TestNG Testing Framework - Comprehensive Guide
 
-## 📋 Introduction
+##  Introduction
 
 TestNG is a powerful testing framework inspired by JUnit and NUnit, designed to make testing more flexible and comprehensive. It covers all categories of tests including unit, functional, end-to-end, integration, and more. This repository demonstrates best practices in test automation using TestNG with Spring Boot.
 
-## 🎯 Overview of Test Implementation
+##  Overview of Test Implementation
 
 ### Test Class: DiscountEngineTest
 
@@ -17,7 +17,7 @@ This test class extends `AbstractTestNGSpringContextTests` to leverage Spring Bo
 - **300 loyalty points** for customers with over 1000 points
 - **Maximum discount cap** of 2000
 
-## ✅ Testing Features Demonstrated
+##  Testing Features Demonstrated
 
 ### 1. **Assertions & Validations**
 - Uses `Assert.assertEquals()` for exact value matching
@@ -103,7 +103,7 @@ TestNG_Testing/
 └── README.md                        # This file
 ```
 
-## 📦 Dependencies
+##  Dependencies
 
 The project uses:
 - **Spring Boot 3.2.5** - Application framework
@@ -111,7 +111,7 @@ The project uses:
 - **Mockito** - Mocking framework (optional)
 - **Java 21** - Programming language
 
-## 🚀 Running Tests
+##  Running Tests
 
 ### 1. Clean and Run All Tests
 ```bash
@@ -154,7 +154,7 @@ mvnw.cmd clean test
 mvn clean install -DskipTests
 ```
 
-## 📊 Viewing Test Reports
+##  Viewing Test Reports
 
 ### Step 1: Locate the Report Directory
 After running tests, navigate to the `test-output` directory in your project:
@@ -188,7 +188,7 @@ The HTML report displays:
 - **Graphs**: Visual representation of test results
 - **Timeline**: Test execution duration
 
-## 📝 Sample Test Case Breakdown
+##  Sample Test Case Breakdown
 
 ```java
 @Test(groups = "smoke")
@@ -207,7 +207,7 @@ public void givenHighValueOrder_whenCalculate_thenApplyDiscount() {
 }
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 ### pom.xml Key Settings
 ```xml
@@ -245,7 +245,7 @@ public void givenHighValueOrder_whenCalculate_thenApplyDiscount() {
 </suite>
 ```
 
-## 💡 Best Practices
+##  Best Practices
 
 1. **Use Meaningful Test Names** - Follow BDD pattern (Given-When-Then)
 2. **Separate Concerns** - Keep setup, execution, and assertion distinct
@@ -260,13 +260,6 @@ public void givenHighValueOrder_whenCalculate_thenApplyDiscount() {
 - [TestNG Official Documentation](https://testng.org/doc/)
 - [Spring Boot Testing Guide](https://spring.io/guides/gs/testing-web/)
 - [Maven Surefire Documentation](https://maven.apache.org/surefire/)
-
-## 📞 Support
-
-For issues or questions about this project:
-1. Check the test output reports for detailed error messages
-2. Review test implementation in `src/test/java`
-3. Examine the business logic in `src/main/java`
 
 
 ---
