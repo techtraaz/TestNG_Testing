@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="DiscountEngineSuite">
+
+    <listeners>
+        <listener class-name="com.testng_testing.listener.CustomTestListener"/>
+    </listeners>
+
+    <test name="BusinessLogicTests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="regression"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.testng_testing.DiscountEngineTest"/>
+        </classes>
+    </test>
+
+</suite>
