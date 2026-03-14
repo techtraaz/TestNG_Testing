@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -19,12 +20,30 @@ public class DiscountEngineTest
     @Autowired
     private DiscountEngine engine;
 
-    @BeforeClass
+    private Order testOrder;
+
+    // ========== FIXTURES - SETUP/TEARDOWN MECHANISMS ==========
+
+    @BeforeClass(alwaysRun = true)
     public void setupSuite() {
-        System.out.println("Starting Discount Engine Tests");
+        System.out.println("\n=== Starting Discount Engine Tests ===");
     }
 
-    // Data Provider
+    @BeforeMethod(alwaysRun = true)
+    public void beforeEachTest() {
+        System.out.println("  Setting up test data before test");
+        testOrder = null;
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void afterEachTest(ITestResult result) {
+        String status = result.isSuccess() ? "PASSED" : "FAILED";
+        System.out.println("  Test " + result.getName() + " - " + status);
+        testOrder = null;
+    }
+
+    // ========== DATA PROVIDER ==========
+
     @DataProvider(name = "customerTypes")
     public Object[][] customerTypes() {
         return new Object[][]{
@@ -33,6 +52,8 @@ public class DiscountEngineTest
         };
     }
 
+    // ========== POSITIVE TEST CASES ==========
+
     @Test(groups = "smoke",
             description = "Given high value order When calculate Then apply 10% discount")
     public void givenHighValueOrder_whenCalculate_thenApplyDiscount() {
@@ -40,8 +61,8 @@ public class DiscountEngineTest
         Order order = new Order(6000, CustomerType.REGULAR, false, 0);
         OrderSummary summary = engine.calculate(order);
 
-        Assert.assertEquals(summary.getDiscount(), 600);
-        Assert.assertEquals(summary.getFinalAmount(), 5400);
+        Assert.assertEquals(summary.getDiscount(), 600.0);
+        Assert.assertEquals(summary.getFinalAmount(), 5400.0);
     }
 
     @Test(dataProvider = "customerTypes", groups = "regression")
@@ -66,5 +87,21 @@ public class DiscountEngineTest
         soft.assertEquals(summary.getFinalAmount(),
                 order.getAmount() - summary.getDiscount());
         soft.assertAll();
+    }
+
+    // ========== NEGATIVE TEST CASES ==========
+
+    @Test(groups = {"negative", "smoke"},
+          description = "GIVEN null order WHEN calculate THEN throw NullPointerException",
+          expectedExceptions = NullPointerException.class)
+    public void givenNullOrder_whenCalculate_thenThrowException() {
+        engine.calculate(null);
+    }
+
+    @Test(groups = {"negative", "regression"},
+          description = "GIVEN negative amount WHEN create order THEN throw IllegalArgumentException",
+          expectedExceptions = IllegalArgumentException.class)
+    public void givenNegativeAmount_whenCreateOrder_thenThrowException() {
+        testOrder = new Order(-5000, CustomerType.REGULAR, false, 0);
     }
 }
