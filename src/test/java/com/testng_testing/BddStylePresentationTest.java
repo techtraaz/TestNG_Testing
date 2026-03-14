@@ -17,7 +17,7 @@ public class BddStylePresentationTest extends AbstractTestNGSpringContextTests {
     private DiscountEngine engine;
 
     @Test(
-        groups = "presentation",
+        groups = "regression",
         description = "Demonstrates BDD Style Test Naming (Given-When-Then)"
     )
     public void givenExtremelyHighValueOrder_whenDiscountIsCalculated_thenDiscountShouldNotExceedMaxCap() {
@@ -34,7 +34,7 @@ public class BddStylePresentationTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test(
-        groups = "presentation",
+        groups = "regression",
         description = "Demonstrates BDD Style Test Naming for a standard order with no discounts"
     )
     public void givenRegularCustomerWithSmallOrder_whenDiscountIsCalculated_thenNoDiscountIsApplied() {
@@ -50,7 +50,7 @@ public class BddStylePresentationTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test(
-        groups = "presentation",
+        groups = "regression",
         description = "Demonstrates BDD Style Test Naming for a Premium customer perk"
     )
     public void givenPremiumCustomer_whenDiscountIsCalculated_thenFlatPremiumDiscountIsApplied() {

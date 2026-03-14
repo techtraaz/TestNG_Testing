@@ -16,6 +16,8 @@
 
         <classes>
             <class name="com.testng_testing.DiscountEngineTest"/>
+            <class name="com.testng_testing.DataDrivenPresentationTest"></class>
+            <class name="com.testng_testing.BddStylePresentationTest"></class>
         </classes>
     </test>
 

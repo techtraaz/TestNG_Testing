@@ -31,7 +31,7 @@ public class DataDrivenPresentationTest extends AbstractTestNGSpringContextTests
 
     @Test(
         dataProvider = "loyaltyAndFirstOrderScenarios", 
-        groups = "presentation",
+        groups = "regression",
         description = "Demonstrates Data-Driven Testing using a DataProvider"
     )
     public void testVariousLoyaltyAndFirstOrderCombos(boolean isFirstOrder, int loyaltyPoints, double expectedDiscount) {
